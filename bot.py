@@ -27,7 +27,7 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 
 # Command untuk bot
 @bot.command()
-async def ringkas(ctx, url: str):
+async def ringkas_url(ctx, url: str):
     await ctx.send("Mengambil teks dari website, mohon tunggu...")
     # Ambil teks dari URL
     text = fetch_text_from_url(url)
@@ -39,6 +39,15 @@ async def ringkas(ctx, url: str):
     await ctx.send("Meringkas teks, mohon tunggu...")
     # Ringkas teks
     summary = summarize_text(text)
+    await ctx.send(f"Ringkasan:\n{summary}")
+
+@bot.command()
+async def ringkas_teks(ctx, *, text: str):
+    # Konfirmasi penerimaan teks
+    await ctx.send("Teks diterima, sedang meringkas...")
+    # Meringkas teks
+    summary = summarize_text(text)
+    # Mengirimkan hasil ringkasan
     await ctx.send(f"Ringkasan:\n{summary}")
 
 @bot.event
