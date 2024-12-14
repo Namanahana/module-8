@@ -25,6 +25,40 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='$', intents=intents)
 
+# command untuk pilih ringkas
+@bot.command()
+async def pilih(ctx):
+    message = await ctx.send("Pilih jenis ringkasan:\n📄 untuk teks\n🔗 untuk tautan")
+    await message.add_reaction("📄")
+    await message.add_reaction("🔗")
+
+    def check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) in ["📄", "🔗"]
+
+    try:
+        reaction, user = await bot.wait_for("reaction_add", timeout=30.0, check=check)
+        if str(reaction.emoji) == "📄":
+            await ctx.send("Ketik teks yang ingin diringkas. Jangan lupa untuk tambahkan '$ringkas_teks' sebelum mengetik teks yang ingin diringkas!")
+        elif str(reaction.emoji) == "🔗":
+            await ctx.send("Kirimkan tautan yang ingin diringkas. Jangan lupa untuk tambahkan '$ringkas_url' sebelum mengirim tautan yang ingin diringkas!")
+    except TimeoutError:
+        await ctx.send("Waktu habis. Silakan coba lagi.")
+
+
+# command untuk info bot
+@bot.command()
+async def info(ctx):
+    embed = discord.Embed(
+        title="Informasi Bot",
+        description="Bot ini dibuat untuk membantu kamu, kawan! ❤️",
+        color=0xffc0cb  # Warna pink pastel 
+        )
+    embed.add_field(name="Fitur", value="1. Meringkas teks ($ringkas_reks)\n2. Meringkas teks dari tautan ($ringkas_url)", inline=False)
+    embed.add_field(name="Fitur tambahan", value="1. Password generator ($passw)\n2. Mengirim meme lucu ($mem)\n3. Mengirim gambar bebek ($duck)", inline=False)
+    embed.add_field(name="Dibuat oleh", value="Hana yang keren", inline=False)
+    embed.set_footer(text="Dibuat khusus untuk kamu, hehe~")
+    await ctx.send(embed=embed)
+    
 # Command untuk bot
 @bot.command()
 async def ringkas_url(ctx, url: str):

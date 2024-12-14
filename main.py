@@ -42,3 +42,4 @@ def summarize_text(text):
         return f"Gagal meringkas teks: {e}"
 
 
+
