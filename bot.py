@@ -53,8 +53,8 @@ async def info(ctx):
         description="Bot ini dibuat untuk membantu kamu, kawan! ❤️",
         color=0xffc0cb  # Warna pink pastel 
         )
-    embed.add_field(name="Fitur", value="1. Meringkas teks ($ringkas_reks)\n2. Meringkas teks dari tautan ($ringkas_url)", inline=False)
-    embed.add_field(name="Fitur tambahan", value="1. Password generator ($passw)\n2. Mengirim meme lucu ($mem)\n3. Mengirim gambar bebek ($duck)", inline=False)
+    embed.add_field(name="Fitur utama", value="1. Meringkas teks ($ringkas_teks)\n2. Meringkas teks dari tautan ($ringkas_url)", inline=False)
+    embed.add_field(name="Fitur tambahan", value="1. Informasi bot ($info)\n2. Pilihan ringkas ($pilih)\n3. Password generator ($passw)\n4. Mengirim meme lucu ($mem)\n5. Mengirim gambar bebek ($duck)", inline=False)
     embed.add_field(name="Dibuat oleh", value="Hana yang keren", inline=False)
     embed.set_footer(text="Dibuat khusus untuk kamu, hehe~")
     await ctx.send(embed=embed)
