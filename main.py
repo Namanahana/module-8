@@ -11,7 +11,7 @@ def gen_pass(pass_length):
     return password
 
 # Inisialisasi model T5
-tokenizer = T5Tokenizer.from_pretrained("t5-small")
+tokenizer = T5Tokenizer.from_pretrained("t5-small", legacy=False)
 model = T5ForConditionalGeneration.from_pretrained("t5-small")
 
 # Fungsi untuk mengambil teks dari URL
